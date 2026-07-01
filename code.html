@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+        }
+        .serif-heading {
+            font-family: 'Source Serif 4', serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #eeeeee;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary-container": "#1c1b1b",
+                "status-success-bg": "#E8F5E9",
+                "secondary-fixed-dim": "#c4c6d2",
+                "on-background": "#1a1c1c",
+                "outline-variant": "#c4c7c7",
+                "error-container": "#ffdad6",
+                "surface-dim": "#dadada",
+                "tertiary-container": "#201924",
+                "on-tertiary-container": "#8b808e",
+                "on-secondary-container": "#61646e",
+                "surface-tint": "#5f5e5e",
+                "primary-fixed-dim": "#c8c6c5",
+                "surface-container-high": "#e8e8e8",
+                "on-tertiary-fixed": "#201924",
+                "on-primary-fixed-variant": "#474646",
+                "surface-bright": "#f9f9f9",
+                "primary": "#000000",
+                "primary-fixed": "#e5e2e1",
+                "surface-container-low": "#f3f3f3",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed": "#181b24",
+                "tertiary": "#000000",
+                "surface-variant": "#e2e2e2",
+                "inverse-surface": "#2f3131",
+                "status-pending-bg": "#FFFDE7",
+                "secondary-fixed": "#e0e2ee",
+                "secondary-container": "#e0e2ee",
+                "on-primary": "#ffffff",
+                "background": "#f9f9f9",
+                "on-secondary": "#ffffff",
+                "stellar-purple-pastel": "#EBE4F2",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#f1f1f1",
+                "on-secondary-fixed-variant": "#434750",
+                "error": "#ba1a1a",
+                "surface": "#f9f9f9",
+                "on-surface": "#1a1c1c",
+                "on-surface-variant": "#444748",
+                "secondary": "#5b5e68",
+                "on-primary-fixed": "#1c1b1b",
+                "outline": "#747878",
+                "on-tertiary-fixed-variant": "#4d4450",
+                "surface-container-highest": "#e2e2e2",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#eeeeee",
+                "tertiary-fixed": "#ecdeee",
+                "inverse-primary": "#c8c6c5",
+                "stellar-blue-pastel": "#DDE3F0",
+                "on-primary-container": "#858383",
+                "tertiary-fixed-dim": "#cfc2d2",
+                "data-border": "#EEEEEE"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "unit": "8px",
+                "container-max": "1280px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px",
+                "gutter": "24px"
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden">
+<!-- Desktop Sidebar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-primary-container flex flex-col py-8 px-4 z-50">
+<div class="mb-12 px-2 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-semibold text-on-surface">BPOFlow</h1>
+<p class="font-body-md text-label-md text-on-surface-variant">USDC → PHPT Bridge</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active Item: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 bg-stellar-blue-pastel text-on-secondary-container rounded-xl transition-all duration-150 scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Contractors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-label-md text-label-md">Streams</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Treasury</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Wallets</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-data-border space-y-2">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm">account_balance_wallet</span>
+                Connect Freighter
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-md text-label-md">Trustline Help</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-surface dark:bg-background border-b border-data-border flex items-center justify-between px-margin-desktop z-40">
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body-md" placeholder="Search hash or recipient..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 border-r border-data-border pr-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="font-label-md text-label-md font-semibold">Alex Sterling</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Treasury Manager</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-data-border overflow-hidden bg-stellar-purple-pastel">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a business executive with a sharp, modern aesthetic, soft office lighting, high-end corporate photography style with deep charcoal and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYqeV9n0hjTzordFJRs9afFbtVz2EszqNuF3KSkG2sMw4C5dXOGmhjzIdNuGfXEn0RK34Q9g48RaLv-ByUa-F-kbdb3DK6p2HPlG6rDY0ayxdq814mJpLpjaeyHy_r6yZq7sfJYl2qHrJRApHwvOnCl3Sc9Il3VOvFL0rnKH2xdibQZV6iVOhOKjjXkkhUsO9p0K6obqy8poUqgNnoC3jUe0u5WC1yhB99aLS3-bXMezpsC1flRfe0wUnWmpm72CD7UMx3LUp-BrJU"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-margin-desktop max-w-container-max mx-auto overflow-y-auto min-h-screen">
+<!-- Header Section -->
+<header class="flex justify-between items-end mb-12">
+<div class="space-y-1">
+<h2 class="serif-heading font-headline-lg text-headline-lg">Stream Liquidity</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">Automated USDC cross-asset payroll settlement via Soroban.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 border border-data-border rounded-lg text-label-md hover:bg-surface-container transition-colors">Export CSV</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">send</span>
+                    Stream Batch
+                </button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Global Liquidity Chart (Large) -->
+<section class="col-span-8 bg-surface-container-lowest border border-data-border rounded-xl p-8 relative overflow-hidden h-[420px]">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-1">Active Pipeline Volume</h3>
+<p class="serif-heading font-display-lg text-display-lg">USDC 142,090.42</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-label-md">USDC</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-stellar-blue-pastel"></span>
+<span class="text-xs font-label-md">PHPT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-stellar-purple-pastel"></span>
+<span class="text-xs font-label-md">XLM</span>
+</div>
+</div>
+</div>
+<!-- Fake Chart Visualization -->
+<div class="absolute bottom-0 left-0 right-0 h-48 flex items-end px-8 pb-4 gap-2">
+<div class="flex-1 bg-primary/5 rounded-t-lg transition-all duration-500 hover:bg-primary/10 group relative" style="height: 60%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">72k</div>
+</div>
+<div class="flex-1 bg-primary/10 rounded-t-lg" style="height: 45%;"></div>
+<div class="flex-1 bg-stellar-blue-pastel rounded-t-lg" style="height: 80%;"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg" style="height: 65%;"></div>
+<div class="flex-1 bg-stellar-purple-pastel rounded-t-lg" style="height: 40%;"></div>
+<div class="flex-1 bg-primary/5 rounded-t-lg" style="height: 55%;"></div>
+<div class="flex-1 bg-primary/15 rounded-t-lg" style="height: 90%;"></div>
+<div class="flex-1 bg-primary/5 rounded-t-lg" style="height: 35%;"></div>
+<div class="flex-1 bg-stellar-blue-pastel rounded-t-lg" style="height: 70%;"></div>
+<div class="flex-1 bg-primary/10 rounded-t-lg" style="height: 50%;"></div>
+<div class="flex-1 bg-primary/25 rounded-t-lg" style="height: 85%;"></div>
+<div class="flex-1 bg-stellar-purple-pastel rounded-t-lg" style="height: 45%;"></div>
+</div>
+</section>
+<!-- Pending Approvals Widget -->
+<section class="col-span-4 bg-surface-container-lowest border border-data-border rounded-xl flex flex-col p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md serif-heading">Pending</h3>
+<span class="text-xs font-label-md text-primary bg-stellar-blue-pastel px-2 py-1 rounded">2 Ready</span>
+</div>
+<div class="space-y-4 flex-1">
+<!-- Batch Item -->
+<div class="p-4 bg-surface-container rounded-lg border-l-4 border-primary transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-wider">Batch #9012 — Manila Ops</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">vpn_key</span>
+</div>
+<p class="font-label-md text-label-md mb-1">50,000 USDC → PHPT</p>
+<p class="text-xs text-on-surface-variant">Ready for Freighter Signing</p>
+</div>
+<div class="p-4 bg-surface-container rounded-lg border-l-4 border-stellar-blue-pastel transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-wider">Batch #9011 — Support</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">sync</span>
+</div>
+<p class="font-label-md text-label-md mb-1">12,500 USDC → PHPT</p>
+<p class="text-xs text-on-surface-variant">Validating Trustlines...</p>
+</div>
+<div class="p-4 bg-surface-container-low opacity-60 rounded-lg border-l-4 border-data-border transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-wider">Batch #9008 — Engineering</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">check_circle</span>
+</div>
+<p class="font-label-md text-label-md mb-1">8,000 USDC → PHPT</p>
+<p class="text-xs text-on-surface-variant">Settlement Confirmed</p>
+</div>
+</div>
+<button class="w-full py-3 mt-6 border border-data-border rounded-lg text-label-md font-semibold hover:bg-on-surface hover:text-white transition-all">
+                    View Pipeline
+                </button>
+</section>
+<!-- Currencies Summary -->
+<section class="col-span-12 grid grid-cols-3 gap-gutter mt-4">
+<div class="bg-surface-container-lowest border border-data-border p-6 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">USDC (Source)</p>
+<p class="serif-heading text-headline-md font-bold">185,400.00</p>
+</div>
+<div class="w-12 h-12 bg-status-success-bg flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-on-surface">monetization_on</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-data-border p-6 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">PHPT (Target)</p>
+<p class="serif-heading text-headline-md font-bold">10,567,800.00</p>
+</div>
+<div class="w-12 h-12 bg-stellar-blue-pastel flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-on-surface">account_balance</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-data-border p-6 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-[10px] font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">XLM (Network)</p>
+<p class="serif-heading text-headline-md font-bold">45,890.42</p>
+</div>
+<div class="w-12 h-12 bg-stellar-purple-pastel flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-on-surface">hub</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="col-span-12 bg-surface-container-lowest border border-data-border rounded-xl mt-4">
+<div class="p-6 border-b border-data-border flex justify-between items-center">
+<h3 class="serif-heading font-headline-md text-headline-md">Recent Activity</h3>
+<button class="text-label-md text-on-surface-variant hover:text-primary underline underline-offset-4">Network Explorer</button>
+</div>
+<div class="p-0 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase text-[10px] tracking-widest">Operation ID</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase text-[10px] tracking-widest">Flow Description</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase text-[10px] tracking-widest">Bridge Amount</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase text-[10px] tracking-widest">Status</th>
+<th class="px-6 py-4 font-label-sm text-on-surface-variant uppercase text-[10px] tracking-widest">Timestamp</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-data-border">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-mono text-on-surface text-sm">#STR-88210-B</td>
+<td class="px-6 py-4 text-sm font-label-md">Stream: 500 USDC → 28,500 PHPT</td>
+<td class="px-6 py-4 text-sm font-semibold">28,500.00 PHPT</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-status-success-bg text-[10px] font-label-sm text-green-800">SETTLED</span>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">10:42 AM Today</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-mono text-on-surface text-sm">#STR-88209-X</td>
+<td class="px-6 py-4 text-sm font-label-md">Stream: 1,200 USDC → 68,400 PHPT</td>
+<td class="px-6 py-4 text-sm font-semibold">68,400.00 PHPT</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-status-pending-bg text-[10px] font-label-sm text-yellow-800">STREAMING</span>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">09:15 AM Today</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-mono text-on-surface text-sm">#STR-88208-U</td>
+<td class="px-6 py-4 text-sm font-label-md">Stream: 300 USDC → 17,100 PHPT</td>
+<td class="px-6 py-4 text-sm font-semibold">17,100.00 PHPT</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-status-success-bg text-[10px] font-label-sm text-green-800">SETTLED</span>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Yesterday</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-data-mono text-on-surface text-sm">#STR-88207-F</td>
+<td class="px-6 py-4 text-sm font-label-md">Stream: 2,000 USDC → PHPT</td>
+<td class="px-6 py-4 text-sm font-semibold">-- PHPT</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-error-container text-[10px] font-label-sm text-error">TRUSTLINE_MISSING</span>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Yesterday</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer Spacer -->
+<footer class="h-24"></footer>
+</main>
+<!-- Interactive micro-interactions script -->
+<script>
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mousedown', function() {
+                this.classList.add('scale-95');
+            });
+            link.addEventListener('mouseup', function() {
+                this.classList.remove('scale-95');
+            });
+            link.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-95');
+            });
+        });
+
+        // Simple animation simulation for chart bars on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('section.col-span-8 .flex-1');
+            bars.forEach((bar, index) => {
+                const targetHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.transition = `height 1s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s`;
+                    bar.style.height = targetHeight;
+                }, 100);
+            });
+        });
+    </script>
+</body></html>
