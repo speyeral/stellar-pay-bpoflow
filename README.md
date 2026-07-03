@@ -3,7 +3,7 @@
 Cross-Border Enterprise Payroll via Stellar Path Payments
 
 ## Problem
-In the Philippines, BPO (Business Process Outsourcing) workers and remote freelancers suffer from high remittance fees, slow bank transfer times (3-7 days), and unfavorable foreign exchange rates when paid in USD by overseas employers. While paying in crypto solves the speed and fee issue, it introduces price volatility and the burden of off-ramping. Corporate treasuries want to fund payroll in stablecoins like USDC to maintain standard accounting, but local workers need a stable local currency (like the Philippine Peso) to pay their bills.
+In the Philippines, BPO (Business Process Outsourcing) workers and remote freelancers suffer from high remittance fees, slow bank transfer times (3-7 days), and unfavorable foreign exchange rates when paid in USD by overseas employers. While paying in crypto solves the speed and fee issue, it introduces price volatility and the burden of off-ramping. Corporate treasuries want to fund payroll in stablecoins like USDC to maintain standard accounting, but local workers need a stable local currency (like the Philippine Peso) to pay their bills. Moreover, money sent by Filipinos abroad were at a record high of $35.634 billion in 2025, as reported by the Banko Sentral ng Pilipinas.
 
 ## How It Works
 BPOFlow is a corporate treasury dashboard for enterprise payroll managers.
@@ -20,8 +20,8 @@ BPOFlow leverages specific, powerful Stellar primitives:
 - **Trustlines & Classic Assets**: Ensures compliance and safety. The dashboard's pre-flight check explicitly queries Horizon to verify `changeTrust` operations before allowing the execution of payroll.
 
 ## Track
-Cross-Border Payments
-
+ Track 2 — Financial Inclusion & Everyday Payments 
+ 
 ## Tech Stack
 - Framework: Next.js 16 (App Router) / React / Tailwind CSS
 - Stellar SDK: @stellar/stellar-sdk
@@ -32,7 +32,7 @@ Cross-Border Payments
 You will need Node.js installed and the Freighter browser extension configured for the Stellar Testnet.
 
 ```bash
-git clone https://github.com/sebastianperez/bpoflow.git
+git clone https://github.com/speyeral/bpoflow.git
 cd stellar_global_payroll
 npm install
 npm run dev
@@ -47,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - PHPT: `GCUIVILDCZJOJTYXJEC6RAINKFKJ3HWNU3Y56G3RZVU6CACBOEE5XWDE`
 
 ## Team
-- Sebastian Perez — @sebastianperez
+- Lemuel Sebastian Perez — @speyeral
 
 ## License
 MIT
