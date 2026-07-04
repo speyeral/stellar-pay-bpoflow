@@ -5,10 +5,11 @@ import RecipientTable from './RecipientTable';
 import ExecutionPanel from './ExecutionPanel';
 import { Recipient } from '@/types';
 
+import DashboardMetrics from './DashboardMetrics';
 import { hasPHPTTrustline } from '@/lib/stellar';
 
 const MOCK_RECIPIENTS: Recipient[] = [
-  { id: 'EMP-001', name: 'Maria Santos', publicKey: 'GCUIVILDCZJOJTYXJEC6RAINKFKJ3HWNU3Y56G3RZVU6CACBOEE5XWDE', amountPHPT: '28,500.00', status: 'pending' },
+  { id: 'EMP-001', name: 'Mary Grace Piattos', publicKey: 'GDYJDDD4HB3THVE4QWOB2CSUIZOBWNS6LWGXWR6NLVP7ZYETVFGBTCGP', amountPHPT: '28,500.00', status: 'pending' },
   { id: 'EMP-002', name: 'Juan Dela Cruz', publicKey: 'GCALH2AMAHJZBTRNB6AMHXAGNWBXEVKH6DM5FNRWMUQPBYISBKRNKNMZ', amountPHPT: '17,100.00', status: 'pending' },
   { id: 'EMP-003', name: 'Ana Reyes', publicKey: 'GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWHF', amountPHPT: '34,200.00', status: 'pending' },
 ];
@@ -16,6 +17,10 @@ const MOCK_RECIPIENTS: Recipient[] = [
 export default function BatchUploadView() {
   const [recipients, setRecipients] = useState<Recipient[]>([]);
   const [isValidating, setIsValidating] = useState(false);
+
+  const totalRecipients = recipients.length;
+  const totalPHPT = recipients.reduce((sum, r) => sum + parseFloat(r.amountPHPT.replace(/,/g, '')), 0);
+  const totalUSDC = totalPHPT / 57; // Mock rate 1 USDC = 57 PHPT
 
   const handleUploadMock = () => {
     // Simulate parsing a CSV file
@@ -38,7 +43,13 @@ export default function BatchUploadView() {
   };
 
   return (
-    <section className="grid grid-cols-12 gap-gutter h-[600px]">
+    <>
+      <DashboardMetrics 
+        totalRecipients={totalRecipients} 
+        totalPHPT={totalPHPT} 
+        totalUSDC={totalUSDC} 
+      />
+      <section className="grid grid-cols-12 gap-gutter h-[600px]">
       <div className="col-span-8 bg-surface-container-lowest border border-data-border rounded-xl flex flex-col">
         <div className="p-6 border-b border-data-border flex justify-between items-center bg-surface-bright rounded-t-xl">
           <h3 className="serif-heading font-headline-md text-headline-md">Batch Upload & Validation</h3>
@@ -74,5 +85,6 @@ export default function BatchUploadView() {
         <ExecutionPanel recipients={recipients} />
       </div>
     </section>
+    </>
   );
 }

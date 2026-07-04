@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useStellar } from '@/contexts/StellarContext';
+import { getAddress } from '@stellar/freighter-api';
 import { buildAndSignTrustline } from '@/lib/stellar';
 
 function TrustlineSetupContent() {
@@ -10,27 +11,36 @@ function TrustlineSetupContent() {
   const assetCode = searchParams.get('asset') || 'PHPT';
   const assetIssuer = searchParams.get('issuer') || '';
   
-  const { publicKey, status: walletStatus, connect } = useStellar();
+  const { status: walletStatus, connect } = useStellar();
   const [setupStatus, setSetupStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSetup = async () => {
-    if (walletStatus !== 'connected' || !publicKey) {
+    if (walletStatus !== 'connected') {
       await connect();
       return;
     }
 
-    if (!assetIssuer) {
-      setSetupStatus('error');
-      setErrorMessage('Missing asset issuer in the URL.');
-      return;
-    }
-
-    setSetupStatus('processing');
-    setErrorMessage('');
-
     try {
-      await buildAndSignTrustline(publicKey, assetCode, assetIssuer);
+      // Force fetch the currently active address from Freighter to prevent tx_bad_auth
+      // in case the user switched accounts without refreshing the page.
+      const addressRes = await getAddress();
+      const activePublicKey = addressRes.address;
+      
+      if (!activePublicKey) {
+        throw new Error('Please unlock your Freighter wallet and select an account.');
+      }
+
+      if (!assetIssuer) {
+        setSetupStatus('error');
+        setErrorMessage('Missing asset issuer in the URL.');
+        return;
+      }
+
+      setSetupStatus('processing');
+      setErrorMessage('');
+
+      await buildAndSignTrustline(activePublicKey, assetCode, assetIssuer);
       setSetupStatus('success');
     } catch (error: unknown) {
       console.error("Trustline setup failed:", error);
@@ -44,7 +54,7 @@ function TrustlineSetupContent() {
       <div className="bg-surface-container-lowest border border-data-border rounded-2xl p-8 max-w-md w-full shadow-lg">
         <div className="flex flex-col items-center text-center mb-8">
           <div className="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-4">
-            <span className="material-symbols-outlined text-3xl text-primary">account_balance_wallet</span>
+            <span className="material-symbols-outlined text-3xl text-white">account_balance_wallet</span>
           </div>
           <h1 className="font-headline-md text-headline-md serif-heading mb-2">Action Required</h1>
           <p className="text-on-surface-variant font-label-md">

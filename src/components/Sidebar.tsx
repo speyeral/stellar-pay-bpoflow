@@ -14,8 +14,8 @@ export default function Sidebar() {
           <span className="material-symbols-outlined text-sm">rocket_launch</span>
         </div>
         <div>
-          <h1 className="font-headline-md text-headline-md font-semibold text-on-surface">BPOFlow</h1>
-          <p className="font-body-md text-label-md text-on-surface-variant">USDC &rarr; PHPT Bridge</p>
+          <h1 className="font-headline-md text-headline-md font-semibold text-white">BPOFlow</h1>
+          <p className="font-body-md text-label-md text-white">USDC &rarr; PHPT Bridge</p>
         </div>
       </div>
       <nav className="flex-1 space-y-2">

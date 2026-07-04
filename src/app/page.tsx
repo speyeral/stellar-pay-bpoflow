@@ -1,5 +1,4 @@
 import DashboardLayout from "@/components/DashboardLayout";
-import DashboardMetrics from "@/components/DashboardMetrics";
 import BatchUploadView from "@/components/BatchUploadView";
 import WalletConnection from "@/components/WalletConnection";
 
@@ -15,8 +14,6 @@ export default function Home() {
           <WalletConnection />
         </div>
       </header>
-      
-      <DashboardMetrics />
       
       <BatchUploadView />
     </DashboardLayout>
